@@ -1,0 +1,1808 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>野宴趣</title>
+<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="img/logo.png">
+<style type="text/css">
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+</style>
+<script>
+/*jquery mobile Google Map*/
+function abc(lat,lng) {
+    var defaultLatLng = new google.maps.LatLng(lat, lng);  // Default to Hollywood, CA when no geolocation support
+    if ( navigator.geolocation ) {
+        function success(pos) {
+            // Location found, show map with these coordinates
+            //drawMap(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+			 drawMap(defaultLatLng);
+        }
+        function fail(error) {
+            drawMap(defaultLatLng);  // Failed to find location, show default map
+        }
+        // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
+        navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
+    } else {
+        drawMap(defaultLatLng);  // No geolocation support, show default map
+    }
+    function drawMap(latlng) {
+        var myOptions = {
+            zoom: 16,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        // Add an overlay to the map of current lat/lng
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: "我在這裡!"
+        });
+		$.mobile.changePage('#map-page');
+		google.maps.event.trigger(map,"resize");
+		map.setCenter(latlng);
+    }
+}
+</script>
+
+<script>
+function Signin(){
+	$.mobile.changePage('#page3-1',{transition:'slide'});
+}
+function MM_jumpMenuGo(objId,targ,restore){ //v9.0
+  var selObj = null;  with (document) { 
+  if (getElementById) selObj = getElementById(objId);
+  if (selObj) eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0; }
+}
+</script>
+</head>
+
+<body>
+<!-------------第一頁-------------------------->
+<div data-role="page" id="page1">
+ 
+  <div data-role="header" >
+   
+    <h1>野宴趣</h1>
+  </div>
+  
+  <div data-role="content">
+  <center><img src="img/logo.png" width="168" height="168" alt="logo"></center>
+  <p>『野宴趣』是專門為野餐做的整合平台，整合了野餐地點周邊的餐廳，餐點選擇多樣化，並且能夠選擇方便的地點一次取貨。</p>
+  <p>我們也設計了一款野餐盒，不用一次提著好幾大包的食物去野餐，讓你野餐也能很時尚。</p>
+  <p>此外，也可以加購趣味野餐墊，直接在野餐墊上玩遊戲，讓歡笑聲充滿全場。</p>
+ 
+  </div>
+ 
+  
+  
+  <div data-role="footer" data-position="fixed">
+  	<div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3" ><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280" ><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>          
+        </ul>
+   	</div>
+    
+  </div>
+</div>
+
+<!--------------------------------------->
+<div data-role="page" id="page2">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+	
+
+     <h1>資訊區</h1>
+  </div>
+  
+
+  	<div data-role="navbar" >
+    	<ul>
+        	<li><a href="#page2">地點推薦</a></li>
+            <li><a href="#page2-1" data-rel="dialog">貼心提醒</a></li>
+            <li><a href="#page2-2" data-rel="dialog">一週天氣</a></li>
+        </ul>
+  	</div>
+    
+  <div data-role="content">
+     野餐地點推薦
+  	
+  	<div data-role="collapsible-set">
+  	  <div data-role="collapsible">
+  	    <h3>華山文創園區大草原</h3>
+        <img src="img/p1/p1.jpg" width=80%  alt="P1"> 
+        <h4>地址:台北市中山區林森北路27號</h4>
+  	    <a href="javascript:abc(25.0471017,121.5243613)" >地圖點我</a>
+      </div>
+  	  <div data-role="collapsible" data-collapsed="true">
+  	    <h3>台北大安森林公園</h3>
+        <img src="img/p2/p2.jpg" width=80%  alt="P2"> 
+  	    <h4>地址:台北市大安區新生南路二段1號</h4>
+        <a href="javascript:abc(25.0308456,121.5375157)" >地圖點我</a>
+      </div>
+  	  <div data-role="collapsible" data-collapsed="true">
+  	    <h3>台北花博公園</h3>
+        <img src="img/p3/p3.jpg" width=80%  alt="P3"> 
+  	    <h4>地址:台北市中山區玉門街1號</h4>
+        <a href="javascript:abc(25.0701668,121.5204207)" >地圖點我</a>
+      </div>
+      <div data-role="collapsible" data-collapsed="true">
+  	    <h3>板橋435藝文特區</h3>
+        <img src="img/p4/p4.jpg" width=80%  alt="P4"> 
+  	    <h4>地址:新北市板橋區中正路435號</h4>
+        <a href="javascript:abc(25.0232915,121.4537681)" >地圖點我</a>
+      </div>
+    </div>
+    
+    
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+	
+<!--------------------------------------->
+<div data-role="page" id="page2-1" >
+  <div data-role="header" >
+    <h1>貼心提醒</h1>
+  </div>
+ 
+  <div data-role="content"> 
+  	<h3><img src="img/exclamation.png" width="30" height="30" > 時間篇</h3> 
+ 	建議選擇過正中午的午後哦~ <br>
+    下午2點至5點是最適合的時間，避免太陽直曬！
+  	<h3><img src="img/exclamation.png" width="30" height="30" > 裝備篇</h3> 
+ 	記得攜帶野餐籃、野餐墊、餐具、水、面紙、濕紙巾、防蚊液、防曬遮陽用具，離開前將垃圾帶走，一起愛護地球哦！
+  </div>
+    
+</div>
+
+<!--------------------------------------->
+<div data-role="page" id="page2-2">
+  <div data-role="header">
+    <h1>一週天氣</h1>
+  </div>
+ 
+  <div data-role="content"> 
+  	<center><h3>氣溫</h3></center>
+ 	<img src="img/weather.png" width=100% height=100% alt="weather">
+  	<center><h3>體感溫度與紫外線</h3></center>
+ 	<img src="img/UV1.png" width=100% height=100% alt="UV1">
+    <img src="img/UV2.png" width=100% height=100% alt="UV2">
+  </div>
+    
+</div>
+<!---------------------------------->
+<div data-role="page" id="map-page" data-url="map-page">
+    <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>Maps</h1>
+    </div>
+    <div role="main" class="ui-content" id="map-canvas">
+        <!-- map loads here... -->
+    </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>點餐系統</h1>
+  </div>
+  <div data-role="content"> 
+    
+    <div data-role="fieldcontain">
+      <label for="tel">手機:</label>
+      <input type="text" name="textinput" id="h" placeholder="請輸入手機號碼" value=""  />
+    </div>
+   
+    <div data-role="fieldcontain">
+      <label for="passwordinput" >密碼:</label>
+      <input type="password" name="passwordinput" id="w" placeholder="請輸入密碼" value=""  />
+    </div>
+   
+    <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-2" data-role="button" data-rel="dialog">註冊</a>
+    	<a href="#page3-1" data-role="button" onClick="Signin()">登入</a>
+    </div>
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+  
+</div>
+<!--------------------------------------->
+<div data-role="page" id="page3-1">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>訂餐區</h1>
+  </div>
+  <div data-role="content"> step.1 請選擇野餐地點
+   
+    
+<div data-role="collapsible-set">
+  	  <div data-role="collapsible">
+  	    <h3>華山文創園區大草原</h3>
+        <img src="img/p1/p1.jpg" width=80%  alt="P2"> 
+        <h4>地址:台北市中山區林森北路27號</h4>
+  	    <a href="javascript:abc(25.0471017,121.5243613)" >地圖點我</a>
+      </div>
+  	  <div data-role="collapsible" data-collapsed="true">
+  	    <h3>台北大安森林公園</h3>
+        <img src="img/p2/p2.jpg" width=80%  alt="P2"> 
+  	    <h4>地址:台北市大安區新生南路二段1號</h4>
+        <a href="javascript:abc(25.0308456,121.5375157)" >地圖點我</a>
+      </div>
+  	  <div data-role="collapsible" data-collapsed="true">
+  	    <h3>台北花博公園</h3>
+        <img src="img/p3/p3.jpg" width=80%  alt="P3"> 
+  	    <h4>地址:台北市中山區玉門街1號</h4>
+        <a href="javascript:abc(25.0701668,121.5204207)" >地圖點我</a>
+      </div>
+      <div data-role="collapsible" data-collapsed="true">
+  	    <h3>板橋435藝文特區</h3>
+        <img src="img/p4/p4.jpg" width=80%  alt="P4"> 
+  	    <h4>地址:新北市板橋區中正路435號</h4>
+        <a href="javascript:abc(25.0232915,121.4537681)" >地圖點我</a>
+      </div>
+    </div>
+   <hr>
+   <form name="form" id="form">
+      <select name="jumpMenu" id="jumpMenu">
+      	<option value="#page3-1">請選擇</option>
+        <option value="#page3-1-1">華山文創園區大草原</option>
+        <option value="#page3-1-2">台北大安森林公園</option>
+        <option value="#page3-1-3">台北花博公園</option>
+        <option value="#page3-1-4">板橋435藝文特區</option>
+      </select>
+      <input type="button" name="go_button" id= "go_button" value="下一步" onClick="MM_jumpMenuGo('jumpMenu','parent',0)">
+    </form>
+   
+    
+  </div>
+  
+  
+  
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+
+  
+</div>
+<!--------------------------------------->
+<div data-role="page" id="page3-2">
+  <div data-role="header" >
+    <h1>註冊</h1>
+  </div>
+  <div data-role="content">
+      <div data-role="fieldcontain">
+          <label for="tel">手機:</label>
+          <input type="text" name="telinput" id="h" value="" placeholder="請輸入手機號碼"  />
+    </div>
+       
+        <div data-role="fieldcontain">
+          <label for="passwordinput">密碼:</label>
+          <input type="password" name="passwordinput" id="w" value=""  placeholder="請輸入密碼"  />
+        </div>
+        
+        <div data-role="fieldcontain">
+          <label for="tel">姓名:</label>
+          <input type="text" name="nameinput" id="n" value="" placeholder="請輸入姓名"  />
+       </div>
+       
+       <div data-role="fieldcontain">
+          <label for="tel">信箱:</label>
+          <input type="email" name="emailinput" id="e" value="" placeholder="請輸入e-mail"  />
+       </div>
+       <center><a href="#page3" data-role="button" data-inline="true" >我要註冊</a></center>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!---------------------------------->
+<div data-role="page" id="page3-3-1">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>付款方式</h1>
+  </div>
+  
+  <div data-role="content">
+  step.3 請選擇想要取貨的店家
+  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1LYZCV1FDZtmcFYbr0SiN6lOQqCs" width=100% height=100% ></iframe>
+
+<div data-role="fieldcontain">
+    <label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="selectmenu">
+      <option >請選擇</option>
+      <option value="option1">A) LOUISA COFFEE路易莎咖啡</option>
+      <option value="option2">B) Beccafico cafe</option>
+      <option value="option3">C) 松鼠Bonbon</option>
+      <option value="option4">D) 艾搗蛋手工蛋餅</option>
+      <option value="option5">E) 小確幸紅茶牛奶</option>
+    </select>
+  </div>
+      
+      <hr>
+      
+      <div data-role="fieldcontain">
+            請選擇取貨日期及時間：<br><br>
+            <input type="datetime-local" name="user_datetime-local" />
+      </div>
+      <hr>
+      請選擇付款方式:
+      <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-4" data-role="button" data-rel="dialog">線上付款</a>
+    	<a href="#page3-5" data-role="button" data-rel="dialog">取貨付款</a>
+   	 </div>
+      
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-3-2">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>付款方式</h1>
+  </div>
+  
+  <div data-role="content">
+  step.3 請選擇想要取貨的店家
+  <iframe src="https://www.google.com/maps/d/embed?mid=1JaUQ9mtsgpdYV2y8cSsnFt9tldQ"  width=100% height=100% ></iframe>
+
+<div data-role="fieldcontain">
+    <label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="selectmenu">
+      <option >請選擇</option>
+      <option value="option1">A) 雅埠咖啡YABOO</option>
+      <option value="option2">B) 照起工茶飲三明治</option>
+      <option value="option3">C) 鄰居家 NEXT DOOR</option>
+      <option value="option4">D) Eating Time</option>
+     
+    </select>
+  </div>
+      
+      <hr>
+      
+      <div data-role="fieldcontain">
+            請選擇取貨日期及時間：<br><br>
+            <input type="datetime-local" name="user_datetime-local" />
+      </div>
+      <hr>
+      請選擇付款方式:
+      <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-4" data-role="button" data-rel="dialog">線上付款</a>
+    	<a href="#page3-5" data-role="button" data-rel="dialog">取貨付款</a>
+   	 </div>
+      
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-3-3">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>付款方式</h1>
+  </div>
+  
+  <div data-role="content">
+  step.3 請選擇想要取貨的店家
+  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1kUqSlESbnswTRtH0mjbZTyco8-4" width=100% height=100% ></iframe>
+
+<div data-role="fieldcontain">
+    <label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="selectmenu">
+      <option >請選擇</option>
+      <option value="option1">A) 啡創工廠</option>
+      <option value="option2">B) 爭鮮</option>
+      <option value="option3">C) 瑪吉咖啡</option>
+      <option value="option4">D) 樹樂集</option>
+      <option value="option5">E) 藝風港</option>
+    </select>
+  </div>
+      
+      <hr>
+      
+      <div data-role="fieldcontain">
+            請選擇取貨日期及時間：<br><br>
+            <input type="datetime-local" name="user_datetime-local" />
+      </div>
+      <hr>
+      請選擇付款方式:
+      <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-4" data-role="button" data-rel="dialog">線上付款</a>
+    	<a href="#page3-5" data-role="button" data-rel="dialog">取貨付款</a>
+   	 </div>
+      
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-3-4">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>付款方式</h1>
+  </div>
+  
+  <div data-role="content">
+  step.3 請選擇想要取貨的店家
+  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1csyDlQ22Q_SucUNs24Iq-8-YiwE" width=100% height=100% ></iframe>
+
+<div data-role="fieldcontain">
+    <label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="selectmenu">
+      <option >請選擇</option>
+      <option value="option1">A) 好初早餐</option>
+      <option value="option2">B) HANA</option>
+      <option value="option3">C) 阿朗基咖啡</option>
+      <option value="option4">D) 艾搗蛋手工蛋餅</option>
+      <option value="option5">E) N.Y BAGELS CAFE</option>
+    </select>
+  </div>
+      
+      <hr>
+      
+      <div data-role="fieldcontain">
+            請選擇取貨日期及時間：<br><br>
+            <input type="datetime-local" name="user_datetime-local" />
+      </div>
+      <hr>
+      請選擇付款方式:
+      <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-4" data-role="button" data-rel="dialog">線上付款</a>
+    	<a href="#page3-5" data-role="button" data-rel="dialog">取貨付款</a>
+   	 </div>
+      
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-4">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+  
+    <h1>線上付款</h1>
+  </div>
+  
+  <div data-role="content"> 
+    <div data-role="fieldcontain">
+      <label for="tel">姓名:</label>
+      <input type="text" name="textinput1" id="textinput1" value=""  style="width:50%;" placeholder="請輸持卡人姓名"/>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="tel">身分證字號:</label>
+      <input type="text" name="textinput2" id="textinput2" value="" style="width:60%;" placeholder="請輸持卡人身分證字號"/>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="tel">持卡人身分生日:</label>
+      <input type="date" name="user_date" style="width:50%;"/>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="tel">信用卡卡號：</label>
+      <input type="text" name="textinput3" id="textinput3" value=""  />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="tel">有效日期：</label>
+      <input type="date" name="user_date" style="width:50%;"/>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="tel">信用卡背面3碼：</label>
+      <input type="text" name="textinput4" id="textinput4" value="" style="width:20%;" />
+    </div>
+    <div data-role="controlgroup" data-type="horizontal">
+    	<a href="#page3-6" data-role="button"　data-rel="dialog" >確認付款</a>
+    </div>
+  </div>
+  
+  
+</div>
+<!---------------------------------->
+
+<div data-role="page" id="page3-5">
+  <div data-role="header">
+  
+    <h1>取貨付款</h1>
+  </div>
+  
+  <div data-role="content">
+  <center>訂單編號:123456789</center>
+  <center>請出示條碼供店員掃描付款</center>
+  <br>
+  <center><img src="img/code.png" width="200" height="86" alt="code"> </center>
+  </div>
+  <br>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-6">
+  <div data-role="header" >
+  <h1>付款完成證明</h1>
+  </div>
+  
+   <div data-role="content">
+   	 <center> <img src="img/check.png" width="28" height="28" alt="check"> 
+     <br>已完成付款 </center>
+   </div>
+     
+     <center><div data-role="controlgroup" data-type="horizontal">
+     <a href="#page3-7" data-role="button" data-rel="dialog">訂單</a>
+   	 </div></center>
+ 
+   <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+   </div>
+</div>
+<!---------------------------------->
+<div data-role="page" id="page3-7">
+  <div data-role="header" >
+  	<h1>訂單明細</h1>
+  </div>
+  
+  <div data-role="content">
+		<div data-role="fieldcontain">
+      	         
+        <p>訂單編號:123456789</p>
+        <p>以下是您的訂購餐點</p>
+      <li style="text-align:center;list-style-type:none">脆粒花生貝果&nbsp;&nbsp; X2  &nbsp;&nbsp;共 90元</li>
+      <li style="text-align:center;list-style-type:none">全麥香燻雞肉&nbsp;&nbsp; x4  &nbsp;&nbsp;共180元</li>
+      <li style="text-align:center;list-style-type:none">英國人的甜點&nbsp;&nbsp; x2  &nbsp;&nbsp;共340元</li>
+      <li style="text-align:center;list-style-type:none">九層塔蛋餅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x3  &nbsp;&nbsp;共120元</li> 
+      <hr>
+      <li style="text-align:center; list-style-type:none;">共730元</li>
+    
+		<p>取貨時間:2016/12/31 下午1:00</p>
+         
+        
+      	</div>
+        
+  </div>
+</div>
+<!---------------------------------->
+      
+<div data-role="page" id="page4">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>搜尋區</h1>
+  </div> 
+   	
+    <!--div data-role="navbar" >
+    	<ul>
+        	<li><a href="#page4">店家 / 餐點搜尋</a></li>
+            <li><a href="#page4-1">野餐食譜</a></li>
+        </ul>
+  	</div-->
+  
+  <div data-role="content">
+  <ul data-role="listview" ata-inset="true"data-autodividers="true" data-inset="true" data-filter="true">
+    
+    <li>(台北大安森林公園)雅埠咖啡YABOO--鮭魚沙拉 </li>
+    <li>(台北大安森林公園)雅埠咖啡YABOO--黑胡椒牛肉三明治</li>
+    <li>(台北大安森林公園)雅埠咖啡YABOO--煙燻鮭魚三明治</li>
+    <li>(台北大安森林公園)雅埠咖啡YABOO--燻雞帕尼尼</li>
+    <li>(台北大安森林公園)雅埠咖啡YABOO--香蕉蛋糕</li>
+    <li>(台北大安森林公園)照起工茶飲三明治--照起工炭烤三明治</li>
+    <li>(台北大安森林公園)照起工茶飲三明治--有機手工三明治</li>
+    <li>(台北大安森林公園)照起工茶飲三明治--素食碳烤三明治</li>
+    <li>(台北大安森林公園)鄰居家 NEXT DOOR--招牌木盆主廚沙拉</li>
+    <li>(台北大安森林公園)鄰居家 NEXT DOOR--鄰居家招牌拼盤</li>
+    <li>(台北大安森林公園)鄰居家 NEXT DOOR--牛肉漢堡</li>
+    <li>(台北大安森林公園)鄰居家 NEXT DOOR--漢堡樓中樓</li>
+    <li>(台北大安森林公園)鄰居家 NEXT DOOR--焦糖烤布蕾</li>
+    <li>(台北大安森林公園)Eating Time--辣牛肉醬漢堡</li>
+    <li>(台北大安森林公園)Eating Time--牛肉裸麥三明治</li>
+    <li>(台北大安森林公園)Eating Time--花生醬牛肉漢堡</li>
+    <li>(台北大安森林公園)Eating Time--起司培根漢堡</li>
+    <li>(台北大安森林公園)Eating Time--起司牛肉漢堡</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--鮮蔬鮪魚貝果</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--黑胡椒牛肉三明治</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--迷迭香烤腿排佛卡夏</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--全麥香燻雞肉</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--蔬食煙燻起司</li>
+    <li>(華山文創園區大草原)LOUISA COFFEE路易莎咖啡--貝果脆粒花生</li>
+    <li>(華山文創園區大草原)Beccafico caffe--皮耶蒙帽子布丁</li>
+    <li>(華山文創園區大草原)Beccafico caffe--英國人的甜點</li>
+    <li>(華山文創園區大草原)Beccafico caffe--提拉米蘇</li>
+    <li>(華山文創園區大草原)Beccafico caffe--卡布里檸檬蛋糕</li>
+    <li>(華山文創園區大草原)Beccafico caffe--白乳酪櫻桃布丁派</li>
+    <li>(華山文創園區大草原)松鼠Bonbon--英式鬆餅</li>
+    <li>(華山文創園區大草原)松鼠Bonbon--可麗露</li>
+    <li>(華山文創園區大草原)松鼠Bonbon--蔓越莓堅果雞肉</li>
+    <li>(華山文創園區大草原)松鼠Bonbon--蘋果核桃優格</li>
+    <li>(華山文創園區大草原)艾搗蛋手工蛋餅--九層塔蛋餅</li>
+    <li>(華山文創園區大草原)艾搗蛋手工蛋餅--牛肉蛋餅</li>
+    <li>(華山文創園區大草原)艾搗蛋手工蛋餅--培根蛋餅</li>
+    <li>(華山文創園區大草原)艾搗蛋手工蛋餅--韓式烤肉蛋餅</li>
+    <li>(華山文創園區大草原)艾搗蛋手工蛋餅--高麗菜蛋餅</li>
+    <li>(華山文創園區大草原)小確幸紅茶牛奶--經典烤起士三明治</li>
+    <li>(華山文創園區大草原)小確幸紅茶牛奶--蕃茄橄欖烤起士三明治</li>
+    <li>(華山文創園區大草原)小確幸紅茶牛奶--辣烤鮪魚三明治</li>
+    <li>(華山文創園區大草原)小確幸紅茶牛奶--法國太太蘋果塔</li>
+    <li>(台北花博公園)啡創工廠--燻牛肉可頌</li>
+    <li>(台北花博公園)啡創工廠--墨西哥雞肉捲</li>
+    <li>(台北花博公園)啡創工廠--BLT三明治</li>
+    <li>(台北花博公園)啡創工廠--法式繽粉嫩鴨</li>
+    <li>(台北花博公園)啡創工廠--雞肉沙拉</li>
+    <li>(台北花博公園)爭鮮--鮭魚肚</li>
+    <li>(台北花博公園)爭鮮--柚香比目魚</li>
+    <li>(台北花博公園)爭鮮--蒲燒鯛魚</li>
+    <li>(台北花博公園)爭鮮--鮭魚</li>
+    <li>(台北花博公園)爭鮮--鮮蝦</li>
+    <li>(台北花博公園)爭鮮--燒炙鮭魚肚</li>
+    <li>(台北花博公園)爭鮮--鮪魚</li>
+    <li>(台北花博公園)爭鮮--鯛魚</li>
+    <li>(台北花博公園)瑪吉咖啡--水果塔</li>
+    <li>(台北花博公園)瑪吉咖啡--手作蛋糕</li>
+    <li>(台北花博公園)瑪吉咖啡--巧克力塔</li>
+    <li>(台北花博公園)瑪吉咖啡--起司蛋糕</li>
+    <li>(台北花博公園)樹樂集--阿嬤的味道 </li>
+    <li>(台北花博公園)樹樂集--大麥豬被夾在裡面</li>
+    <li>(台北花博公園)樹樂集--歐風起司軟法</li>
+    <li>(台北花博公園)樹樂集--威風蛋糕</li>
+    <li>(台北花博公園)樹樂集--香蕉巧克力</li>
+    <li>(台北花博公園)藝風巷--吐司先生</li>
+    <li>(台北花博公園)藝風巷--水果鬆餅</li>
+    <li>(台北花博公園)藝風巷--蘋果派</li>
+    <li>(板橋435藝文特區)好初早餐--豬先生的芝麻小事</li>
+    <li>(板橋435藝文特區)好初早餐--凱薩雞肉沙拉</li>
+    <li>(板橋435藝文特區)好初早餐--燒醬雞厚押餅</li>
+    <li>(板橋435藝文特區)好初早餐--九層塔培根厚呷餅</li>
+    <li>(板橋435藝文特區)好初早餐--雲林牧草鵝拖鞋堡</li>
+    <li>(板橋435藝文特區)好初早餐--板煎鹹豬肉拖鞋堡</li>
+    <li>(板橋435藝文特區)HANA--鮪魚熟烤三明治</li>
+    <li>(板橋435藝文特區)HANA--可頌奶蛋餐</li>
+    <li>(板橋435藝文特區)HANA--栗子蒙布朗鬆餅</li>
+    <li>(板橋435藝文特區)HANA--法式鹹派</li>
+    <li>(板橋435藝文特區)HANA--燻雞吐司堡</li>
+    <li>(板橋435藝文特區)阿朗基咖啡--白兔妹香草蛋糕</li>
+    <li>(板橋435藝文特區)阿朗基咖啡--黑兔妹巧克力蛋糕 </li>
+    <li>(板橋435藝文特區)阿朗基咖啡--熊貓哥巧克力蛋糕</li>
+    <li>(板橋435藝文特區)阿朗基咖啡--河童君紅豆抹茶慕斯蛋糕</li>
+    <li>(板橋435藝文特區)阿朗基咖啡--壞東西濃巧克力蛋糕</li>
+    <li>(板橋435藝文特區)N.Y BAGELS CAFE--原味貝果</li>
+    <li>(板橋435藝文特區)N.Y BAGELS CAFE--藍莓貝果</li>
+    <li>(板橋435藝文特區)N.Y BAGELS CAFE--洋蔥貝果</li>
+    <li>(板橋435藝文特區)N.Y BAGELS CAFE--芝麻貝果</li>
+    <li>(板橋435藝文特區)N.Y BAGELS CAFE--全麥貝果</li>
+  </ul>
+  
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div>
+<!---------------------------------->
+<!--div data-role="page" id="page4-1">
+  <div data-role="header" data-add-back-btn="true">
+  <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>搜尋區</h1>
+  </div>
+	
+    <div data-role="navbar" >
+    	<ul>
+        	<li><a href="#page4">店家 / 餐點搜尋</a></li>
+            <li><a href="#page4-1">野餐食譜</a></li>
+        </ul>
+  	</div>
+    
+  <div data-role="content">
+    <ul data-role="listview" data-inset="true">
+      <li><a href="#">
+        <h3>第一次野餐就上手</h3>
+        <p>2015/03/03</p>
+        <span class="ui-li-count">1</span>
+        
+      </a></li>
+      <li><a href="#">
+        <h3>六道簡單野餐食譜</h3>
+        <p>2015/02/15</p>
+        <span class="ui-li-count">1</span>
+       
+      </a></li>
+      <li><a href="#">
+        <h3>20分鐘野餐趣</h3>
+        <p>2015/02/20</p>
+        <span class="ui-li-count">1</span>
+      </a></li>
+    </ul>
+    
+  
+  </div>
+    
+    
+  
+  
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+    	<ul>
+        	<li><a href="#page2"><img src="img/png/info.png" width="18" height="18">&nbsp;&nbsp;資訊</a></li>
+            <li><a href="#page3"><img src="img/png/market.png" width="18" height="18">&nbsp;&nbsp;購物車</a></li>
+            <li><a href="#page4" ><img src="img/png/search.png" width="18" height="18">&nbsp;&nbsp;搜尋</a></li>
+            <li><a href="https://m.facebook.com/野宴趣-1514314178869280"><img src="img/png/fb.png" width="18" height="18">&nbsp;&nbsp;臉書</a></li>
+        </ul>
+   	</div>
+  </div>
+</div-->
+<!-------------華山--------------------->
+
+<div data-role="page" id="page3-1-1">
+    <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>訂餐區</h1>
+    </div>
+    <div data-role="content"> step.2 請選擇想要訂購的餐點<br><br>
+    
+      <ul data-role="listview" ata-inset="true" >
+      <li data-icon="false">
+        <a href="#">
+          <img src="img/p1/s1/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮮蔬鮪魚貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$60 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+        </li>
+        
+        <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s1/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">黑胡椒牛肉三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$50 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s1/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">迷迭香烤腿排佛卡夏</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$70 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s1/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">全麥香燻雞肉三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$45 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s1/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蔬食煙燻起司貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$55 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s1/06.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">脆粒花生貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$45 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s2/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">皮耶蒙帽子布丁</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s2/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">英國人的甜點</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$170 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s2/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">提拉米蘇</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s2/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">卡布里檸檬蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$140 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s2/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">白乳酪櫻桃布丁派</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$160 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s3/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">英式鬆餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$35 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s3/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">可麗露</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$45 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s3/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蔓越莓堅果雞肉三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s3/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蘋果核桃優格三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$35 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s4/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">九層塔蛋餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s4/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">牛肉蛋餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s4/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">培根蛋餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s4/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">韓式烤肉蛋餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s4/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">高麗菜蛋餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$40 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s5/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">經典烤起士三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$70 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s5/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蕃茄橄欖烤起士三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$80 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s5/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">辣烤鮪魚三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$90 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p1/s5/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">法國太太蘋果塔</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$70 / 片</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      <!--複製li~li-->
+      
+      </ul>
+  </div>
+      
+
+      
+  <div data-role="footer" data-position="fixed">
+  <div data-role="controlgroup" data-type="horizontal">
+        <center><a href="#page3-3-1" data-role="button" >下一步</a></center>
+        
+    </div>
+  </div>
+        
+    
+</div>
+<!-------------大安--------------------->
+
+<div data-role="page" id="page3-1-2">
+    <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>訂餐區</h1>
+    </div>
+    <div data-role="content"> step.2 請選擇想要訂購的餐點<br><br>
+    
+      <ul data-role="listview" ata-inset="true" >
+      <li data-icon="false">
+        <a href="#">
+          <img src="img/p2/s1/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮭魚沙拉</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+        </li>
+        
+        <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s1/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">黑胡椒牛肉三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s1/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">煙燻鮭魚三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s1/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">燻雞帕尼尼</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s1/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">香蕉蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$50 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s2/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">照起工炭烤三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$60 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s2/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">有機手工三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$120 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s2/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">素食碳烤三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$60 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s3/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">招牌木盆主廚沙拉</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$350 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s3/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鄰居家招牌拼盤</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$360 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s3/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">牛肉漢堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$320 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s3/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">漢堡樓中樓</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$320 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s3/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">焦糖烤布蕾</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$80 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s4/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">辣牛肉醬漢堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$280 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s4/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">牛肉裸麥三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$320 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s4/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">花生醬牛肉漢堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$260 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s4/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">起司培根漢堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$260 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p2/s4/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">起司牛肉漢堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$230 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+       <!--複製li~li-->
+      
+      </ul>
+  </div>
+      
+
+      
+<div data-role="footer" data-position="fixed">
+    <div data-role="controlgroup" data-type="horizontal">
+        <center><a href="#page3-3-2" data-role="button" >下一步</a></center>
+        
+    </div>
+  </div>
+        
+    
+</div>
+
+<!-------------花博--------------------->
+
+<div data-role="page" id="page3-1-3">
+    <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>訂餐區</h1>
+    </div>
+    <div data-role="content"> step.2 請選擇想要訂購的餐點<br><br>
+    
+      <ul data-role="listview" ata-inset="true" >
+      <li data-icon="false">
+        <a href="#">
+          <img src="img/p3/s1/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">燻牛肉可頌</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$170 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+        </li>
+        
+        <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s1/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">墨西哥雞肉捲</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s1/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">BLT三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$170 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s1/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">法式繽粉嫩鴨</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s1/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">雞肉沙拉</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$170 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮭魚肚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">柚香比目魚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蒲燒鯛魚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮭魚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮮蝦</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/06.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">燒炙鮭魚肚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/07.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮪魚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s2/08.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鯛魚</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$30 / 貫</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s3/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">水果塔</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$120 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s3/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">手作蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$90 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s3/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">巧克力塔</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$100 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s3/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">起司蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$90 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s4/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">阿嬤的味道</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s4/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">大麥豬被夾在裡面</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s4/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">歐風起司軟法</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$210 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s4/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">威風蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$100 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s4/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">香蕉巧克力</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$130 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s5/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">吐司先生</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s5/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">水果鬆餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p3/s5/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">蘋果派</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      </ul>
+     
+	</div>
+      
+ <div data-role="footer" data-position="fixed">
+  <div data-role="controlgroup" data-type="horizontal">
+        <center><a href="#page3-3-3" data-role="button" >下一步</a></center>
+        
+    </div>
+  </div>
+        
+    
+</div>
+<!-------------板橋435--------------------->
+
+<div data-role="page" id="page3-1-4">
+    <div data-role="header" data-theme="a" data-add-back-btn="true">
+    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">返回</a>
+    <h1>訂餐區</h1>
+    </div>
+    <div data-role="content"> step.2 請選擇想要訂購的餐點<br><br>
+    
+      <ul data-role="listview" ata-inset="true" >
+      <li data-icon="false">
+        <a href="#">
+          <img src="img/p4/s1/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">豬先生的芝麻小事</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$85 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+        </li>
+        
+        <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s1/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">凱薩雞肉沙拉</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$55 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s1/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">燒醬雞厚押餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$75 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s1/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">九層塔培根厚呷餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$60 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s1/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">雲林牧草鵝拖鞋堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$75 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s1/06.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">板煎鹹豬肉拖鞋堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$85 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s2/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">鮪魚熟烤三明治</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s2/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">可頌奶蛋餐</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$125 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s2/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">栗子蒙布朗鬆餅</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$160 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s2/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">法式鹹派</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$135 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s2/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">燻雞吐司堡</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$150 / 份</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s3/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">白兔妹香草蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s3/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">黑兔妹巧克力蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s3/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">熊貓哥巧克力蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s3/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">河童君紅豆抹茶慕斯蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s3/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">壞東西濃巧克力蛋糕</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$180 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s4/01.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">原味貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$58 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s4/02.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">藍莓貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$58 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s4/03.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">洋蔥貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$58 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s4/04.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">芝麻貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$58 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      <li data-icon="false">
+         <a href="#">
+          <img src="img/p4/s4/05.png" style="height:200%;">
+          <h2 style="margin:0px 0 0 0px;">全麥貝果</h2>
+          <p class="ui-li-aside" style="margin-top:20px">價錢：$58 / 個</p>
+          <input type="number" name="user_number" min="0" max="100" step="1" value="0"/></p>
+          </p>
+        </a>
+      </li>
+      
+      </ul>
+  </div>
+      
+
+      
+  <div data-role="footer" data-position="fixed">
+    <div data-role="controlgroup" data-type="horizontal">
+        <center><a href="#page3-3-4" data-role="button" >下一步</a></center>
+        
+    </div>
+  </div>
+        
+    
+</div>
+
+<!---------------------------------->
+
+</body>
+</html>
